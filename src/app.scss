@@ -1,0 +1,15 @@
+.board {
+  display: flex;
+  flex-direction: column;
+
+  &__row {
+    display: flex;
+  }
+
+  &__col {
+    height: 30px;
+    width: 30px;
+    border: 2px solid grey;
+    margin: 2px;
+  }
+}
