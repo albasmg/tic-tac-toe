@@ -1,7 +1,10 @@
 import React from 'react';
 
+const PERSON_PLAYER = 'O';
+const MACHINE_PLAYER = 'X';
+
 const getColumnValue = () => {
-  const columnValues = ['O', 'X'];
+  const columnValues = [PERSON_PLAYER, MACHINE_PLAYER];
   const randomNumber = Math.round(Math.random());
 
   return columnValues[randomNumber];
@@ -17,19 +20,19 @@ const createBoard = () => {
     for (let col = 0; col < 3; col++) {
       const player = getColumnValue();
 
-      if (player === 'X') {
+      if (player === MACHINE_PLAYER) {
         if (machineAttemps > 0) {
-          board[row] = [...board[row], 'X'];
+          board[row] = [...board[row], MACHINE_PLAYER];
           machineAttemps -= 1;
         } else {
-          board[row] = [...board[row], 'O'];
+          board[row] = [...board[row], PERSON_PLAYER];
         }
       } else {
         if (personAttemps > 0) {
-          board[row] = [...board[row], 'O'];
+          board[row] = [...board[row], PERSON_PLAYER];
           personAttemps -= 1;
         } else {
-          board[row] = [...board[row], 'X'];
+          board[row] = [...board[row], MACHINE_PLAYER];
         }
       }
     }
@@ -46,10 +49,12 @@ const App = () => {
   return (
     <div className="App">
       <div className="board">
-        {board.map((row) => (
-          <div className="row">
-            {row.map((col) => (
-              <div className="col">{col}</div>
+        {board.map((row, index) => (
+          <div className="row" key={index}>
+            {row.map((col, index) => (
+              <div className="col" key={index}>
+                {col}
+              </div>
             ))}
           </div>
         ))}
