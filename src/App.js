@@ -9,11 +9,29 @@ const getColumnValue = () => {
 
 const createBoard = () => {
   const board = [];
+  let machineAttemps = 3;
+  let personAttemps = 3;
 
   for (let row = 0; row < 2; row++) {
     board[row] = [];
     for (let col = 0; col < 3; col++) {
-      board[row] = [...board[row], getColumnValue()];
+      const player = getColumnValue();
+
+      if (player === 'X') {
+        if (machineAttemps > 0) {
+          board[row] = [...board[row], 'X'];
+          machineAttemps -= 1;
+        } else {
+          board[row] = [...board[row], 'O'];
+        }
+      } else {
+        if (personAttemps > 0) {
+          board[row] = [...board[row], 'O'];
+          personAttemps -= 1;
+        } else {
+          board[row] = [...board[row], 'X'];
+        }
+      }
     }
   }
 
