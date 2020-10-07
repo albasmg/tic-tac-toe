@@ -1,12 +1,19 @@
 import React from 'react';
 
+const getColumnValue = () => {
+  const columnValues = ['O', 'X'];
+  const randomNumber = Math.round(Math.random());
+
+  return columnValues[randomNumber];
+};
+
 const createBoard = () => {
   const board = [];
 
   for (let row = 0; row < 2; row++) {
     board[row] = [];
     for (let col = 0; col < 3; col++) {
-      board[row] = [...board[row], 'A!'];
+      board[row] = [...board[row], getColumnValue()];
     }
   }
 
@@ -22,9 +29,9 @@ const App = () => {
     <div className="App">
       <div className="board">
         {board.map((row) => (
-          <div className="board__row">
+          <div className="row">
             {row.map((col) => (
-              <div className="board__col">{col}</div>
+              <div className="col">{col}</div>
             ))}
           </div>
         ))}

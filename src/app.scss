@@ -1,15 +1,18 @@
 .board {
   display: flex;
   flex-direction: column;
+}
 
-  &__row {
-    display: flex;
-  }
+.row {
+  display: flex;
+}
 
-  &__col {
-    height: 30px;
-    width: 30px;
-    border: 2px solid grey;
-    margin: 2px;
-  }
+.col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  border: 2px solid grey;
+  margin: 2px;
 }
