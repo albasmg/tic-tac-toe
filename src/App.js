@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const PERSON_PLAYER = 'O';
 const MACHINE_PLAYER = 'X';
@@ -43,22 +43,43 @@ const createBoard = () => {
   return board;
 };
 
+const isBottomLeftWinner = (board) =>
+  (board[0][0] === MACHINE_PLAYER && board[1][0] === MACHINE_PLAYER) ||
+  (board[0][2] === MACHINE_PLAYER && board[1][1] === MACHINE_PLAYER);
+
+const isBottomCenterWinner = (board) =>
+  board[0][1] === MACHINE_PLAYER && board[1][1] === MACHINE_PLAYER;
+
+const isBottomRightWinner = (board) =>
+  (board[0][2] === MACHINE_PLAYER && board[1][2] === MACHINE_PLAYER) ||
+  (board[0][0] === MACHINE_PLAYER && board[1][1] === MACHINE_PLAYER);
+
 const App = () => {
   const board = createBoard();
+  const isLeftWinner = isBottomLeftWinner(board);
+  const isCenterWinner = isBottomCenterWinner(board);
+  const isRightWinner = isBottomRightWinner(board);
 
   return (
     <div className="App">
       <div className="board">
-        {board.map((row, index) => (
-          <div className="row" key={index}>
-            {row.map((col, index) => (
-              <div className="col" key={index}>
+        {board.map((row, rowIndex) => (
+          <div className="row" key={rowIndex}>
+            {row.map((col, colIndex) => (
+              <div className="col" key={`${rowIndex}-${colIndex}`}>
                 {col}
               </div>
             ))}
           </div>
         ))}
       </div>
+      {isLeftWinner && 'La máquina gana con izquierda'}
+      {isCenterWinner && 'La máquina gana con centro'}
+      {isRightWinner && 'La máquina gana con derecha'}
+      {!isLeftWinner &&
+        !isCenterWinner &&
+        !isRightWinner &&
+        'La máquina no puede ganar'}
     </div>
   );
 };
