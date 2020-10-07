@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import Board from './components/Board/Board';
+import Notification from './components/Notification/Notification';
 
 const PERSON_PLAYER = 'O';
 const MACHINE_PLAYER = 'X';
@@ -61,25 +63,14 @@ const App = () => {
   const isRightWinner = isBottomRightWinner(board);
 
   return (
-    <div className="App">
-      <div className="board">
-        {board.map((row, rowIndex) => (
-          <div className="row" key={rowIndex}>
-            {row.map((col, colIndex) => (
-              <div className="col" key={`${rowIndex}-${colIndex}`}>
-                {col}
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
-      {isLeftWinner && 'La máquina gana con izquierda'}
-      {isCenterWinner && 'La máquina gana con centro'}
-      {isRightWinner && 'La máquina gana con derecha'}
-      {!isLeftWinner &&
-        !isCenterWinner &&
-        !isRightWinner &&
-        'La máquina no puede ganar'}
+    <div className="app">
+      <Board board={board} />
+      {isLeftWinner && <Notification message="La máquina gana con izquierda" />}
+      {isCenterWinner && <Notification message="La máquina gana con centro" />}
+      {isRightWinner && <Notification message="La máquina gana con derecha" />}
+      {!isLeftWinner && !isCenterWinner && !isRightWinner && (
+        <Notification message="La máquina no puede ganar" />
+      )}
     </div>
   );
 };

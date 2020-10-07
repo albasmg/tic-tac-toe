@@ -1,18 +1,8 @@
-.board {
+.app {
   display: flex;
+  height: 100vh;
   flex-direction: column;
-}
-
-.row {
-  display: flex;
-}
-
-.col {
-  display: flex;
   justify-content: center;
   align-items: center;
-  height: 30px;
-  width: 30px;
-  border: 2px solid grey;
-  margin: 2px;
+  background-color: $primary-color;
 }

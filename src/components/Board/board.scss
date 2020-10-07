@@ -1,0 +1,20 @@
+.board {
+  display: flex;
+  flex-direction: column;
+
+  &__row {
+    display: flex;
+    font-size: rem(40);
+    color: $dark-color;
+  }
+
+  &__col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: rem(100);
+    width: rem(100);
+    border: rem(4) solid $secondary-color;
+    margin: rem(2);
+  }
+}
