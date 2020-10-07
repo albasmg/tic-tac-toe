@@ -65,9 +65,15 @@ const App = () => {
   return (
     <div className="app">
       <Board board={board} />
-      {isLeftWinner && <Notification message="La máquina gana con izquierda" />}
-      {isCenterWinner && <Notification message="La máquina gana con centro" />}
-      {isRightWinner && <Notification message="La máquina gana con derecha" />}
+      {isLeftWinner && (
+        <Notification message="La máquina gana con la celda de abajo a la izquierda" />
+      )}
+      {isCenterWinner && (
+        <Notification message="La máquina gana con la celda de abajo al centro" />
+      )}
+      {isRightWinner && (
+        <Notification message="La máquina gana con la celda de abajo a la derecha" />
+      )}
       {!isLeftWinner && !isCenterWinner && !isRightWinner && (
         <Notification message="La máquina no puede ganar" />
       )}
